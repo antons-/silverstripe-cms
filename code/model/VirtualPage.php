@@ -523,6 +523,7 @@ class VirtualPage_Controller extends Page_Controller {
 	public function handleAction($request, $action) {
 		$originalClass = $this->CopyContentFrom();
 		$name = $originalClass->ClassName . '_Controller';
+		if ($originalClass == 'SiteTree') $name = 'ContentController';
 		$controller = $name::create();
 
 		if(!$linkedActions = $this->linkedActions()) {
@@ -545,6 +546,7 @@ class VirtualPage_Controller extends Page_Controller {
 	public function linkedActions() {
 		$originalClass = $this->CopyContentFrom();
 		$name = $originalClass->ClassName . '_Controller';
+		if ($originalClass == 'SiteTree') $name = 'ContentController';
 		$controller = $name::create();
 
 		return $controller->allowedActions(get_class($controller));
